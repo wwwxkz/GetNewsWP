@@ -2,10 +2,10 @@
 
 function noticias_todas_shortcode()
 {
-    $retorno = '';
-    $id = 1;
+    $id = 45;
     $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-    $retorno .= '<div class="noticias">';
+    echo '<div class="noticias">';
+    echo '<h2 class="categorias-header titulo">Notícias</h2><br>';
     $args = array( 'posts_per_page' => 20, 'category_id' => $id,
     'paged' => $paged,'post_type' => 'post' );
         $postslist = new WP_Query( $args );
@@ -25,15 +25,16 @@ function noticias_todas_shortcode()
                 previous_posts_link( '&laquo; Últimas Notícias' );
                 echo ' - '; 
                 next_posts_link( 'Notícias anteriores &raquo;', $postslist->max_num_pages );
-            $retorno .= '</div>';
+            echo '</div>';
             wp_reset_postdata();
         endif;
-    $retorno .= '</div>';
+    echo '</div>';
 
-    $retorno .= '
+    echo '
     <style>
         .noticia-grupo > a {
-            font-size: var(--wp--preset--font-size--medium);
+            font-size: var(--wp--preset--font-size--small);
+            font-weight: 600;
         }
         .noticia-grupo > p {
             font-size: var(--wp--preset--font-size--small);
@@ -41,6 +42,4 @@ function noticias_todas_shortcode()
         }
     </style>
     ';
-
-    return $retorno;
 }

@@ -3,7 +3,7 @@
 function noticias_shortcode()
 {
     $retorno = '';
-    $id = 1;
+    $id = 45;
     $args = array('category' => $id, 'numberposts' => 13);
     $categories = get_posts($args);
     $retorno .= '<div class="noticias">';
