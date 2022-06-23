@@ -6,7 +6,7 @@ function noticias_todas_shortcode()
     $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
     echo '<div class="noticias">';
     echo '<h2 class="categorias-header titulo">Notícias</h2><br>';
-    $args = array( 'posts_per_page' => 20, 'category_id' => $id,
+    $args = array( 'posts_per_page' => 20, 'cat' => $id,
     'paged' => $paged,'post_type' => 'post' );
         $postslist = new WP_Query( $args );
         if ( $postslist->have_posts() ) :
