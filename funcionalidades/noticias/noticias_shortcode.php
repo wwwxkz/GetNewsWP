@@ -4,9 +4,6 @@ function noticias_shortcode()
 {
     $retorno = '';
     $id = 1;
-    if (isset($_GET['id'])) {
-        $id = $_GET['id'];
-    }
     $args = array('category' => $id, 'numberposts' => 13);
     $categories = get_posts($args);
     $retorno .= '<div class="noticias">';
