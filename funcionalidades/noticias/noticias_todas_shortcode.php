@@ -2,6 +2,8 @@
 
 function noticias_todas_shortcode()
 {
+	// Noticias 45
+	// Sem categoria 1
     $id = 45;
     $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
     echo '<div class="noticias">';
@@ -12,14 +14,14 @@ function noticias_todas_shortcode()
         if ( $postslist->have_posts() ) :
             while ( $postslist->have_posts() ) : $postslist->the_post(); 
                 $shortlink = wp_get_shortlink( get_the_ID() );
-                echo "<div class='noticia-grupo'><a href=\"" . esc_url($shortlink)  . "\">";
+                echo "<ul class='noticia-grupo'><li><a href=\"" . esc_url($shortlink)  . "\">";
                 the_title(); 
-                echo "</a><p>";
+                echo "</a></li><p>";
                 the_time('j F, Y');
                 echo ' - ';
                 the_category(' ', ' ');
                 echo "<p>";
-                echo "</div>";
+                echo "</ul>";
              endwhile;
                 echo '<br><br>'; 
                 previous_posts_link( '&laquo; Últimas Notícias' );
@@ -32,14 +34,17 @@ function noticias_todas_shortcode()
 
     echo '
     <style>
-        .noticia-grupo > a {
-            font-size: var(--wp--preset--font-size--small);
-            font-weight: 600;
+        .noticia-grupo > li > a {
+            font-size: var(--wp--preset--font-size--medium);
         }
         .noticia-grupo > p {
             font-size: var(--wp--preset--font-size--small);
             color: #1768b1;
         }
+		.noticia-grupo {
+			border-bottom: solid #e5e5e5 1px;
+			margin-bottom: 15px;
+		}
     </style>
     ';
 }

@@ -16,12 +16,12 @@ function noticias_shortcode()
         $retorno .= '<div class="noticias-grupo">';
         foreach($categories as $i=>$category) {
 			if($i >= 1){
-				$retorno .= '<div class="noticia-grupo">';
-					$retorno .= '<a href="' . get_permalink($category->ID) . '">' . $category->post_excerpt . '</a>';
+				$retorno .= '<ul class="noticia-grupo">';
+					$retorno .= '<li><a href="' . get_permalink($category->ID) . '">' . $category->post_excerpt . '</a></li>';
 					$data = new IntlDateFormatter('pt_BR', IntlDateFormatter::LONG, IntlDateFormatter::NONE);
 					$data = $data->format(strtotime($category->post_date));            
 					$retorno .= '<p>' . $data . ' - ' . get_the_category($category->ID)[0]->name . '</p>';
-				$retorno .= '</div>';
+				$retorno .= '</ul>';
 			}
         }    
         $retorno .= '</div>';
@@ -41,7 +41,7 @@ function noticias_shortcode()
 			}
 			.noticia-grupo {
 				flex: none !important;
-				width: 50% !important;
+				width: 46% !important;
 			}
 		}
 		.noticias > div:first-child {
@@ -50,6 +50,7 @@ function noticias_shortcode()
         .noticia {
             display: flex;
             flex-direction: column;
+			margin-right: 20px;
         }
         .noticia > a:first-child {
             font-size: var(--wp--preset--font-size--medium);
@@ -58,19 +59,36 @@ function noticias_shortcode()
             font-size: var(--wp--preset--font-size--medium);
             color: #1768b1;
         }
+		@media (min-width: 800px) {
+			.noticia > a:first-child {
+				font-size: var(--wp--preset--font-size--large);
+			}
+			.noticia-grupo:nth-last-of-type(-n+2) {
+				border-bottom: none;
+			}
+		}
         .noticias-grupo {
             display: flex;
             flex-direction: row;
 			flex: 1;
             flex-wrap: wrap;
 			min-width: 250px;
+			justify-content: space-around;
         }
         .noticia-grupo {
             display: flex;
             flex-direction: column;
             flex: 1;
-            min-width: 160px;
+            min-width: 200px;
+			border-bottom: solid #e5e5e5 1px;
+			margin-bottom: 10px;
+			list-style-type: disc;
         }
+		.noticia-grupo:last-child { 
+			border-bottom: none;
+		}
+
+	
         .noticia-grupo > a {
             font-size: var(--wp--preset--font-size--small);
         }
