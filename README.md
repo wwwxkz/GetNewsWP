@@ -1,6 +1,6 @@
 # GetNewsWP
 
-Plugin made to show all posts from a specific category
+Plugin made to show all posts from selected categories
 
 ```
 'noticias' is meant to be used in the landing page
